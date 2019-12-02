@@ -5,7 +5,7 @@
 
 ![](Pictures/FinishedCar.jpg)
 
-### Project Intorduction and Overview
+### Project Introduction and Overview
 
 Pick up any news source today, and you’ll likely see something about autopilot technology. Whether it’s lane assistance on production cars, self driving fully autonomous vehicles on the streets of LA, delivery drones autopiloting themselves to delivery drops, or worse, a recent accident caused by testing of these emerging technologies, we can be certain that the industry is rapidly advancing towards adoption of autopilot technology. 
 
@@ -54,6 +54,14 @@ Although major corporations like Tesla and Amazon are pouring billions of dollar
 * Lego Figurines 10 Pack (Amazon)
 * Street Signs: [Attatoy Kids Playset Signs](https://www.amazon.com/gp/product/B01A8XTHHA/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1)
 * Blue Painters Tape for Lanes (Hardware Store)
+
+### Building the aiPiCar
+
+Bulding the aiPiCar was relatively easy. For the most part, I was able to follow the instructions from the manufacturer, with a few key diviations outlines below.
+
+[Manufacturer Build Instructions](https://www.sunfounder.com/learn/download/X1BWQ19SYXNwYmVycnlfUGlfU21hcnRfVmlkZW9fQ2FyX1YyLjAucGRm/dispi)
+
+####
 
 
 
