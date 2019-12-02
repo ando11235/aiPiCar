@@ -230,4 +230,102 @@ Video of the aiPiCar operating via remote control:
 
 [![Video of the aiPiCar operating via remote control](https://assets.change.org/photos/7/qo/yu/WPqOyUupuKfUyEM-800x450-noPad.jpg?1523045557)](https://www.youtube.com/watch?v=Bf4ltXj-Qyw)
 
+## Lane Detection and Self Driving Part One: OpenCV
+
+The first challenge was to process live fottage through the aiPiCar's camera and process it through multiple OpenCV filters in order to render detectable lane lines, and ultimately navigate the lane line autonomously. To accomplish this, I first took the camera footage stream from the car, and then applied the filters as outlined below.
+
+###### Note: Source code can be found in github repo, under open_cvtest.py
+
+### Display Raw Video Stream
+
+```python
+import cv2
+import numpy as np
+import math
+
+def main():
+    camera = cv2.VideoCapture(0)
+    camera.set(3, 640) #width
+    camera.set(4, 480) #height
+
+    while( camera.isOpened()):
+        _, frame = camera.read()    
+        cv2.imshow('Original', frame)
+        
+    ...
+    
+    if( cv2.waitKey(1) & 0xFF == ord('q') ): 
+            break
+    camera.release()        
+    cv2.destroyAllWindows()
+    
+if __name__ == '__main__':
+    main()
+```
+
+<img src="Pictures/rawvideo.png" width="50%">
+
+###### Raw Video Input
+
+### Apply HSV Color Filter
+
+```python
+hsv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+cv2.imshow('HSV', hsv_image)
+```
+
+<img src="Pictures/hsvfilter.png" width="50%">
+
+###### Video with HSV Filter
+
+### Apply Blue Color Mask
+
+```python
+lower_blue = np.array([60, 40, 40])
+upper_blue = np.array([150, 255, 255])
+mask = cv2.inRange(hsv_image, lower_blue, upper_blue)
+cv2.imshow('mask', mask)
+```
+<img src="Pictures/maskfilter.png" width="50%">
+
+###### Video with Blue Mask Filter
+
+### Detect Edges of Mask with Canny
+
+```python
+edges = cv2.Canny(mask, 200, 400)
+cv2.imshow('edges', edges)
+```
+
+<img src="Pictures/edgesfilter.png" width="50%">
+
+###### Video with Mask Canny Edges Filter
+
+### Isolate Region of Interest (Lower Half of Image)
+
+```python
+mask = np.zeros_like(edges)
+polygon = np.array([[
+      (0, height * 1 / 2),
+      (width, height * 1 / 2),
+      (width, height),
+      (0, height),
+]], np.int32)
+cv2.fillPoly(mask, polygon, 255)
+cropped_edges = cv2.bitwise_and(edges, mask)
+cv2.imshow('cropped_edges', cropped_edges)
+```
+
+<img src="Pictures/croppededgesfilter.png" width="50%">
+
+###### Video with Mask Canny Edges Filter, Cropped
+
+### Detect Line Segments Using Hough Transform
+
+```python
+rho = 1  # distance precision in pixel, i.e. 1 pixel
+angle = np.pi / 180  # angular precision in radian, i.e. 1 degree
+min_threshold = 10  # minimal of votes
+line_segments = cv2.HoughLinesP(cropped_edges, rho, angle, min_threshold, np.array([]), minLineLength=8, maxLineGap=4)
+```
 
