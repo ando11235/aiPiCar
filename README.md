@@ -192,6 +192,24 @@ Again, fortunately, I was able to find a github repo with workaround instruction
 
 [leswright1977/RPi4-Google-Coral](https://github.com/leswright1977/RPi4-Google-Coral)
 
+### Testing Installed Packages:
+
+Once all the packages have installed and are running without errors, I used David Tian's repo and "coco_object_detection" to make sure was running smoothly. In David's words:
+
+> You should see a live video screen coming up, and it will try to identify objects in the screen at around 7–8 Frames/sec. Note that the COCO (Common Object in COntext) object detection model can detect about 100 common objects, like a person, chair, TV, couch, book, laptop, cell phone, etc. Don’t let this simple program fool you, this is Deep Learning at work. The object detection model used in this program is called ssd_mobilenet_coco_v2, and it contains more than 200 layers!
+
+To run the python program:
+
+```
+pi@raspberrypi:~ $ git clone https://github.com/dctian/DeepPiCar.git
+pi@raspberrypi:~ $ cd ~/DeepPiCar/models/object_detection/
+pi@raspberrypi:~/DeepPiCar/models/object_detection $ python3 code/coco_object_detection.py 
+```
+As you can see, our aiPiCar was able to perform some object recognition:
+
+<img src="Pictures/cocodetection.png" width="50%">
+
+###### In the words of Neo - "I know Kung Fu!"
 
 
 
