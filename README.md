@@ -21,6 +21,7 @@ Although major corporations like Tesla and Amazon are pouring billions of dollar
 * [Building a Raspberry Pi Car Robot with WiFi and Video](https://www.hanselman.com/blog/BuildingARaspberryPiCarRobotWithWiFiAndVideo.aspx)
 * [DeepPiCar — Part 1: How to Build a Deep Learning, Self Driving Robotic Car on a Shoestring Budget](https://towardsdatascience.com/deeppicar-part-1-102e03c83f2c)
 * [Road Lane Detection with Raspberry Pi](https://www.hackster.io/Abhinav_Abhi/road-lane-detection-with-raspberry-pi-a4711f)
+* [End to End Learning for Self-Driving Cars](https://arxiv.org/abs/1604.07316)
 
 ## Hardware and Software Overview
 #### Hardware Used for aiPiCar:
