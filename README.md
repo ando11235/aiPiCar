@@ -23,11 +23,37 @@ Although major corporations like Tesla and Amazon are pouring billions of dollar
 * [Road Lane Detection with Raspberry Pi](https://www.hackster.io/Abhinav_Abhi/road-lane-detection-with-raspberry-pi-a4711f)
 
 ### Hardware and Software Overview
-#### Hardware Used for aiPiCar
+#### Hardware Used for aiPiCar:
 * Car Kit Used: [SunFounder Smart Car Kit](https://www.amazon.com/gp/product/B06XWSVLL8/ref=ppx_yo_dt_b_asin_title_o00_s02?ie=UTF8&psc=1)
 * CPU: [Raspberry Pi 3 B+ (B Plus)](https://www.amazon.com/gp/product/B07BC6WH7V/ref=ppx_yo_dt_b_asin_title_o00_s02?ie=UTF8&psc=1)
 * MicroSD: [Kingston 64GB MicroSD Card](https://www.amazon.com/gp/product/B079GVC5B8/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)
 * Batteries: [Generic 18650 Batteries x4 + Charger](https://www.amazon.com/gp/product/B07T93HQYZ/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1)
 * Upgrade 1 - Wide Angle Camera: [WLP Wide Angle USB Camera](https://www.amazon.com/gp/product/B01N07O9CQ/ref=ppx_yo_dt_b_asin_title_o00_s02?ie=UTF8&psc=1)
 * Upgrade 2 - CPU Upgrade: [Coral EdgeTPU USB Accelerator](https://www.amazon.com/gp/product/B07S214S5Y/ref=ppx_yo_dt_b_asin_title_o00_s03?ie=UTF8&psc=1)
+
+#### Software Used for aiPiCar:
+* Raspberry Pi OS: [Rasbpian Buster v. Sept 2019](https://www.raspberrypi.org/downloads/raspbian/)
+* Remote File Server: Samba File Server 
+``` ~sudo apt-get install samba samba-common-bin -y ```
+* Camera Driver Utlity: v4l2 Linux 
+``` ~sudo apt-get install v4l-utils ```
+* Remote Car Control: SunFounder PiCar ``` ~git clone https://github.com/dctian/SunFounder_PiCar.git ```
+* Python v3.7.3
+* Open CV v4.1.1
+* Matplotlib v3.0.2
+* tensorflow v1.14.0
+* Keras v2.3.1
+
+#### Hardware/ Software for Laptop Setup:
+* Laptop: Apple Macbook Pro
+* Software: macOS Catalina v10.15.1
+* MicroSD card flasher for Pi: [BalenaEtcher](https://www.balena.io/etcher/)
+* Remote Desktop Viewer for Pi: [RealVNC](https://www.realvnc.com/en/connect/download/viewer/)
+
+#### Additional Resources Used:
+* Lego Figurines 10 Pack (Amazon)
+* Street Signs: [Attatoy Kids Playset Signs](https://www.amazon.com/gp/product/B01A8XTHHA/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1)
+* Blue Painters Tape for Lanes (Hardware Store)
+
+
 
