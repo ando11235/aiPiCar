@@ -131,3 +131,68 @@ Step Two: Download RealVNC on Mac and enter the IP address of the Pi
 
 <img src="Pictures/remotedesktop.png" width="50%">
 
+### Setup Remote File Server
+
+In order to be able to easily read/ write files from the Pi without needed to constantly disconnect the SD card, I wanted to setup remote file access to the file system. To do this, I installed SAMBA file server on the Pi using the directions found [here](https://pimylifeup.com/raspberry-pi-samba/). Once the server was setup on the Pi, I was able to connect using the Mac instructions found [here](http://osxdaily.com/2010/09/20/map-a-network-drive-on-a-mac/). 
+
+
+<img src="Pictures/remotefile.png" width="50%">
+
+###### Screenshot of the file server accessible through the macOS
+
+### SunFounder PiCar-V Software Setup
+
+Unfortunately, the Manufacturer's server code runs on Python 2, while we are running the project on Python 3. Thankfully, the author of one of the tutorials I am following (David Tian, linked above) has updated the repo to be Python 3 compatible. Commands to install his version of the Servewr API are found below:
+
+```
+alias python=python3
+alias pip=pip3
+alias sudo='sudo '
+pi@raspberrypi:~ $ git clone https://github.com/dctian/SunFounder_PiCar.git
+pi@raspberrypi:~ $ cd ~/SunFounder_PiCar/picar/
+pi@raspberrypi:~/SunFounder_PiCar/picar $ git clone https://github.com/dctian/SunFounder_PCA9685.git
+pi@raspberrypi:~/SunFounder_PiCar/picar $ cd ~/SunFounder_PiCar/
+pi@raspberrypi:~/SunFounder_PiCar $ sudo python setup.py install
+pi@raspberrypi:~/SunFounder_PiCar/picar $ cd
+pi@raspberrypi:~ $ git clone https://github.com/dctian/SunFounder_PiCar-V.git
+pi@raspberrypi:~ $ cd SunFounder_PiCar-V
+pi@raspberrypi:~/SunFounder_PiCar-V $ sudo ./install_dependencies
+```
+
+### Installing Python and Dependant Packages
+
+Once the OS was up and running, we need to install the other packages we will be utilizing:
+* Install Open CV: 
+
+``` pi@raspberrypi:~ $  sudo apt-get install libhdf5-dev -y && sudo apt-get install libhdf5-serial-dev -y && sudo apt-get install libatlas-base-dev -y && sudo apt-get install libjasper-dev -y && sudo apt-get install libqtgui4 -y && sudo apt-get install libqt4-test -y ```
+
+###### NOTE python3-open cv, NOT opencv-python. This caused me lots of headaches and research time to solve initially.
+
+``` pi@raspberrypi:~ $ pip3 install python3-opencv ```
+
+* Install Matplotlib:
+
+``` pi@raspberrypi:~ $ pip3 install matplotlib ```
+
+* Install tensorflow:
+
+``` pi@raspberrypi:~ $ pip3 install tensorflow ```
+
+* Install keras:
+
+``` pi@raspberrypi:~ $ pip3 install keras ```
+
+### Installing Google edgeTPU
+
+Similar to the above mentioned problem with python3 and OpenCV compatibility, there were some issues intially with compatibility between Google's edgeTPU and Rasbpian Buster. The original install instructions for the edgeTPU can be found below.
+
+[Google EdgeTPU Install Instructions](https://coral.withgoogle.com/docs/accelerator/get-started/)
+
+Again, fortunately, I was able to find a github repo with workaround instructions for Raspian and EdgeTPU compatibility. Instructructions followed below, under "Getting the Coral to work with the Pi 4":
+
+[leswright1977/RPi4-Google-Coral](https://github.com/leswright1977/RPi4-Google-Coral)
+
+
+
+
+
