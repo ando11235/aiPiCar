@@ -471,6 +471,9 @@ Video of the aiPiCar autonomously navigating lane lines:
 
 ## Sign Recognition and Obstacle Avoidance
 
+https://www.xnview.com/en/xnconvert/#downloads
+https://www.dlology.com/blog/how-to-train-an-object-detection-model-easy-for-free/
+
 ## Lessons Learned and Opportunities for Future Teams
 
 Paragraph about lessons learned, opportunities for future teams
