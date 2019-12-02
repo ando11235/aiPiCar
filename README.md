@@ -211,6 +211,23 @@ As you can see, our aiPiCar was able to perform some object recognition:
 
 ###### In the words of Neo - "I know Kung Fu!"
 
+## Testing the aiPiCar
 
+Now that the hardware and software have been setup for the aiPiCar, I was able to use the SunFounder's built in controller to demo the motor functions and camera features. To do so, we need to first run the PiCar server on the Pi, and then connect locally to the Server in order to operate the car remotely:
+
+Step One: Start aiPiCar Server
+
+```
+cd ~/SunFounder_PiCar-V/remote_control 
+sudo ./start 
+```
+
+Step Two: Connect to localhost from web browser
+
+**http://{pi's IP address}:8000/**
+
+Video of the aiPiCar operating via remote control:
+
+[![Video of the aiPiCar operating via remote control](https://img.youtube.com/vi/VID/0.jpg)](https://www.youtube.com/watch?v=Bf4ltXj-Qyw)
 
 
