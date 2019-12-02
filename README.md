@@ -228,6 +228,6 @@ Step Two: Connect to localhost from web browser
 
 Video of the aiPiCar operating via remote control:
 
-[![Video of the aiPiCar operating via remote control](https://img.youtube.com/vi/VID/0.jpg)](https://www.youtube.com/watch?v=Bf4ltXj-Qyw)
+[![Video of the aiPiCar operating via remote control](https://assets.change.org/photos/7/qo/yu/WPqOyUupuKfUyEM-800x450-noPad.jpg?1523045557)](https://www.youtube.com/watch?v=Bf4ltXj-Qyw)
 
 
