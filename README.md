@@ -385,6 +385,6 @@ lane_lines = []
     return line_image
 ```
 
-<img src="Pictures/HughesOVerlay.png" width="50%">
+<img src="Pictures/HughesOverlay.png" width="50%">
 
 ###### Raw Video with Houghes Transform Overlay
