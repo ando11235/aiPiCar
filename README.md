@@ -111,4 +111,23 @@ Physical installation was very easy. I simply threaded one M3x8 screw through th
 
 ###### Google edgeTPU mounted to Servo Plate behind camera
 
+## Raspberry Pi Software Setup
+
+### RaspianOS Install
+
+I installed Raspbian OS directly from the Raspberry Pi site. I initially tried to use the NOOBS installer package, but ran into issues with a known software bug no allowing the NOOBS installer to display on an HDMI connected monitor. To solve this, I reformatted the microSD card and flashed the RaspianOS directly to the card using BalenaEtcher (linked above). After reconnecting the HDMI, keyboard and mouse, I was able to see the Pi desktop below:
+
+<img src="Pictures/pidesktop.png" width="50%">
+
+### Setup Remote Client to macOS: 
+
+After the RaspianOS was setup on the Pi and I was able to see the desktop, the next goal was to setup a VNC Server on the Pi and VNC Viewer on macOS. I used the free software RealVNC to accomplish this.
+
+Step One: Enable SSH and VNC through the Pi’s Interface Settings
+
+<img src="Pictures/piconfig.png" width="50%">
+
+Step Two: Download RealVNC on Mac and enter the IP address of the Pi
+
+<img src="Pictures/remotedesktop.png" width="50%">
 
