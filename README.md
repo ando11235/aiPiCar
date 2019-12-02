@@ -3,9 +3,9 @@
 ## Building a Self-Driving Raspberry Pi Car Capable of Lane Following, Object Recognitions and Obstacle Avoidance
 ### Project by: Alex Andony
 
-![](Pictures/FinishedCar.jpg)
+<img src="Pictures/FinishedCar.jpg" width="75%">
 
-### Project Introduction and Overview
+## Project Introduction and Overview
 
 Pick up any news source today, and you’ll likely see something about autopilot technology. Whether it’s lane assistance on production cars, self driving fully autonomous vehicles on the streets of LA, delivery drones autopiloting themselves to delivery drops, or worse, a recent accident caused by testing of these emerging technologies, we can be certain that the industry is rapidly advancing towards adoption of autopilot technology. 
 
@@ -22,7 +22,7 @@ Although major corporations like Tesla and Amazon are pouring billions of dollar
 * [DeepPiCar — Part 1: How to Build a Deep Learning, Self Driving Robotic Car on a Shoestring Budget](https://towardsdatascience.com/deeppicar-part-1-102e03c83f2c)
 * [Road Lane Detection with Raspberry Pi](https://www.hackster.io/Abhinav_Abhi/road-lane-detection-with-raspberry-pi-a4711f)
 
-### Hardware and Software Overview
+## Hardware and Software Overview
 #### Hardware Used for aiPiCar:
 * Car Kit Used: [SunFounder Smart Car Kit](https://www.amazon.com/gp/product/B06XWSVLL8/ref=ppx_yo_dt_b_asin_title_o00_s02?ie=UTF8&psc=1)
 * CPU: [Raspberry Pi 3 B+ (B Plus)](https://www.amazon.com/gp/product/B07BC6WH7V/ref=ppx_yo_dt_b_asin_title_o00_s02?ie=UTF8&psc=1)
@@ -55,13 +55,60 @@ Although major corporations like Tesla and Amazon are pouring billions of dollar
 * Street Signs: [Attatoy Kids Playset Signs](https://www.amazon.com/gp/product/B01A8XTHHA/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1)
 * Blue Painters Tape for Lanes (Hardware Store)
 
-### Building the aiPiCar
+## Building the aiPiCar
 
 Bulding the aiPiCar was relatively easy. For the most part, I was able to follow the instructions from the manufacturer, with a few key diviations outlines below.
 
 [Manufacturer Build Instructions](https://www.sunfounder.com/learn/download/X1BWQ19SYXNwYmVycnlfUGlfU21hcnRfVmlkZW9fQ2FyX1YyLjAucGRm/dispi)
 
-####
+<img src="Pictures/components.jpg" width="50%">
 
+###### PiCar Components Laid Out
+
+### Installing Heatsinks
+
+**(Before Page 16, PCB Assembly)** - Install heatsinks on Respberry Pi Board
+
+Before Installing the HATS on the Pi board during install, I needed to install the heatsinks directly to the Raspberry Pi board. To do so, all that was required was to remove the backing strip on the heatsink to expose the adhesive paste, and to push the ehatsinks onto the CPU and network card as shown below:
+
+<img src="Pictures/heatsinks.jpg" width="50%">
+
+###### Heatsinks applied to Pi Board
+
+### Installing Upgraded Camera
+
+**(Before Page 33, Pan-and-Tilt)** - Install upgraded USB Camera on aiPiCar
+
+As recommended on the build site I referenced above, the camera that ships with the PiCar kit is an extremely low quality narrow lens. I ordered a 170 degree wide angle USB camera as a replacement, which was relatively easy to install with slight modification to the stock mounting plate. The experiment below illustrates the difference between the stock and “upgraded” camera.
+
+<img src="Pictures/camerademo.jpg" width="50%">
+
+###### Camera Placed roughly 16" from lego figurines on table
+
+<img src="Pictures/stockcamera.jpg" width="50%">
+
+###### Stock Camera View at 16"
+
+<img src="Pictures/wideanglecamera.jpg" width="50%">
+
+###### Upgraded Camera at 16"
+
+To install the camera, rather than installing the stock pan and tilt servos, I secured the USB Camera directly to the Servo Plate using two M3x8 Cross Screws and M3 Nuts. The camera provided a wide enough lens that the pan and tilt servos were unnecessary.
+
+<img src="Pictures/cameramount.jpg" width="50%">
+
+###### Upgraded Camera Mounted on Servo Plate
+
+### Installing Edge TPU Processor
+
+**(Before Page 33, Pan-and-Tilt)** - Install Google EdgeTPU Processor
+
+In order to take some of the processing load off of the Pi for image processing and running Object Detection in TensorFlow, I installed Google’s Edge Tensor Processing Unit USB. At an extremely low cost, it was an easy upgrade to allow the car to process images much more rapidly while leaving the onboard Pi CPU open for performing navigation.
+
+Physical installation was very easy. I simply threaded one M3x8 screw through the top corner of the edgeTPU and secured it with an M3 nut. 
+
+<img src="Pictures/edgeTPU.jpg" width="50%">
+
+###### Google edgeTPU mounted to Servo Plate behind camera
 
 
