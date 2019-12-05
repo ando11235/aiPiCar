@@ -14,8 +14,8 @@ Although major corporations like Tesla and Amazon are pouring billions of dollar
 #### In order to demonstrate the above technology, we outlined the following goals to demonstrate this behavior:
 * Assemble the PiCar Kit and Base Raspberry Pi Operating System 
 * Demonstrate Autonomous “Lane Following” through OpenCV
-* Demonstrate Advanced Autonomous “Lane Following” using Deep Learning and TensorFlow
 * Demonstrate Advanced Camera recognition features, including adapting to street signs and basic obstacle avoidance
+* Demonstrate Advanced Autonomous “Lane Following” using Deep Learning and TensorFlow
 
 #### The build was inspired and heavily influenced by the following web pages:
 * [Building a Raspberry Pi Car Robot with WiFi and Video](https://www.hanselman.com/blog/BuildingARaspberryPiCarRobotWithWiFiAndVideo.aspx)
@@ -467,12 +467,42 @@ Video of the aiPiCar autonomously navigating lane lines:
 
 [![Video of the aiPiCar autonomously navigating lane lines](https://assets.change.org/photos/7/qo/yu/WPqOyUupuKfUyEM-800x450-noPad.jpg?1523045557)](https://youtu.be/dGva-cCV_7U)
 
-## Lane Detection and Self Driving Part Two
-
 ## Sign Recognition and Obstacle Avoidance
+
+After the aiPiCar was succesfully able to navigate the lane lines and follow the blue tape course, the next step was to build and train an object recognition model in order to autonomously alter the car's behavior when recognizing various objects, signs and people. The objects we wanted to train and account for were:
+* Stop Sign: When the aiPiCar recognizes a stop sign, the car should come to a stop, wait, and then continue driving
+* Person: When the aiPiCar recognizes a (lego) person, the car should come to a stop and wait until the person is no longer in the path of the car
+* 25 mph Sign: When the aiPiCar recognizes a 25 mph sign, the car should slow speed until given a new speed limit
+* 40 mph Sign: When the aiPiCar recognizes a 40 mph sign, the car should increase speed until given a new speed limit
+
+### Model Training
+
+In order to train the object recognition model, we used a method called "Transfer Learning" that allows you to leverage an existing model, rather than building a new model from scratch. Once you select a model to work from, you can feed it defined images and train the model to recognize the specifc objects you are working with. The reasoning is well-stated by David Tian's tutorial article:
+
+> "We don’t want to collect and label hundreds of thousands of images and spend weeks or months to construct and train a deep detection model from scratch. What we can do is to leverage Transfer Learning — which starts with the model parameters of a pre-trained model, supply it with only 50–100 of our own images and labels, and only spend a few hours to train parts of the detection neural network. The intuition is that in a pre-trained model, the base CNN layers are already good at extracting features from images since these models are trained on a vast number and large variety of images. The distinction is that we now have a different set of object types (6) than that of the pre-trained models (~100–100,000 types)."
+
+For this project, the recommended existing model to train was the MobileNet v2 SSD COCO Quantized Model. We specifically need the quantized version of the mdoel, because the Google EdgeTPU is specifically designed to work with quantized models. 
+
+The first step of the process is to take a number of training images used to train the model. These images show the objects you want the aiPiCar to recognize, at various angles and lighting in the environment the car will operate in. For this project, we took 50 images randomly placing the objects in different combinations and angles, similar to below:
+
+#image of training images
+
+One the images were captured, the next step is to bound and label the images they contain.
+
+#image of labelled training images
+
+### Stop Sign Adjustments
+
+### Person Avoidance
+
+### 25 mph Adjustments
+
+### 40 mph Adjustments
 
 https://www.xnview.com/en/xnconvert/#downloads
 https://www.dlology.com/blog/how-to-train-an-object-detection-model-easy-for-free/
+
+## Lane Detection and Self Driving Part Two
 
 ## Lessons Learned and Opportunities for Future Teams
 
