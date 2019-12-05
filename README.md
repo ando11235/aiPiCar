@@ -487,9 +487,25 @@ The first step of the process is to take a number of training images used to tra
 
 #image of training images
 
-One the images were captured, the next step is to bound and label the images they contain.
+One the images were captured, the next step was to bound and label the images they contain. By taking these raw images and outlining/ labeling the individual objects they contain, these files can be used during the Machine Training process for these objects. 
+
+To accomplish labeling the 50 images, we used an app called [RectLabel](https://rectlabel.com/) This macOS app allows you to predefine the objects you want to label, then quickly cycle through the 50 images while drawing label boxes around the objects in each image. Overall, the process for 50 images took about 60 minutes, with the app exporting an xml file for each image. 
 
 #image of labelled training images
+
+Now that we had the 50 training images, as well as xml files with the labelling data, we were able to actually train our model. To do so, we leveraged this [Google Collab Notebook](https://colab.research.google.com/github/dctian/DeepPiCar/blob/master/models/object_detection/code/tensorflow_traffic_sign_detection.ipynb) setup to connect to images in a github rebo and run the training commands. The specific instructions are well documented in the notebook, but the high level steps involve:
+* Authenticating to google drive to store output data
+* Connecting to the repo where the images and xml files are stored
+* Downloading the MobileNet v2 SSD COCO Quantized Model
+* Converting the xml label files to a csv training file
+* Run Training Model
+* Convert Output to Edge TPU's tflite Format
+
+Once model training was complete, we were able to test the live camera feed against the same objects in real time using the following code:
+
+# Code Chunk for display objects with model
+
+# image of trained model test
 
 ### Stop Sign Adjustments
 
@@ -499,7 +515,7 @@ One the images were captured, the next step is to bound and label the images the
 
 ### 40 mph Adjustments
 
-https://www.xnview.com/en/xnconvert/#downloads
+
 https://www.dlology.com/blog/how-to-train-an-object-detection-model-easy-for-free/
 
 ## Lane Detection and Self Driving Part Two
