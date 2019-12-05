@@ -1,0 +1,62 @@
+<annotation>
+    <folder>Object Training Images</folder>
+    <filename>IMG_3785.jpeg</filename>
+    <size>
+        <width>4032</width>
+        <height>3024</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+        <name>Stop Sign</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>2719</xmin>
+            <ymin>861</ymin>
+            <xmax>3190</xmax>
+            <ymax>1349</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Speed Limit 40</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>2041</xmin>
+            <ymin>849</ymin>
+            <xmax>2416</xmax>
+            <ymax>1295</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Speed Limit 25</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>1481</xmin>
+            <ymin>858</ymin>
+            <xmax>1845</xmax>
+            <ymax>1325</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Person</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>1009</xmin>
+            <ymin>1503</ymin>
+            <xmax>1327</xmax>
+            <ymax>2317</ymax>
+        </bndbox>
+    </object>
+</annotation>

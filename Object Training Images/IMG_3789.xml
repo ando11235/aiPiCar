@@ -1,0 +1,75 @@
+<annotation>
+    <folder>Object Training Images</folder>
+    <filename>IMG_3789.jpeg</filename>
+    <size>
+        <width>4032</width>
+        <height>3024</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+        <name>Speed Limit 40</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>1395</xmin>
+            <ymin>820</ymin>
+            <xmax>1667</xmax>
+            <ymax>1127</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Speed Limit 25</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>1891</xmin>
+            <ymin>872</ymin>
+            <xmax>2146</xmax>
+            <ymax>1188</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Stop Sign</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>2307</xmin>
+            <ymin>942</ymin>
+            <xmax>2640</xmax>
+            <ymax>1270</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Person</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>2803</xmin>
+            <ymin>1474</ymin>
+            <xmax>3074</xmax>
+            <ymax>1994</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Person</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>1236</xmin>
+            <ymin>1357</ymin>
+            <xmax>1557</xmax>
+            <ymax>1852</ymax>
+        </bndbox>
+    </object>
+</annotation>

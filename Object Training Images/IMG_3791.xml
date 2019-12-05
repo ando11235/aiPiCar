@@ -1,0 +1,75 @@
+<annotation>
+    <folder>Object Training Images</folder>
+    <filename>IMG_3791.jpeg</filename>
+    <size>
+        <width>4032</width>
+        <height>3024</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+        <name>Speed Limit 25</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>1930</xmin>
+            <ymin>558</ymin>
+            <xmax>2117</xmax>
+            <ymax>815</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Stop Sign</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>1530</xmin>
+            <ymin>591</ymin>
+            <xmax>1839</xmax>
+            <ymax>882</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Speed Limit 40</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>1158</xmin>
+            <ymin>528</ymin>
+            <xmax>1386</xmax>
+            <ymax>816</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Person</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>1271</xmin>
+            <ymin>1050</ymin>
+            <xmax>1526</xmax>
+            <ymax>1594</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Person</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>2679</xmin>
+            <ymin>1382</ymin>
+            <xmax>3086</xmax>
+            <ymax>2218</ymax>
+        </bndbox>
+    </object>
+</annotation>
