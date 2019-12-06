@@ -1,6 +1,4 @@
-0 Green
+0 Stop
 1 Person
-2 Red
+2 Limit 40
 3 Limit 25
-4 Limit 40
-5 Stop
