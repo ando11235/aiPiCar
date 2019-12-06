@@ -501,9 +501,7 @@ Now that we had the 50 training images, as well as xml files with the labelling 
 * Run Training Model
 * Convert Output to Edge TPU's tflite Format
 
-Once model training was complete, we were able to test the live camera feed against the same objects in real time using the following code:
-
-# Code Chunk for display objects with model
+Once model training was complete, we were able to test the live camera feed against the same objects in real time:
 
 <img src="Pictures/model_detection.png" width="70%">
 
