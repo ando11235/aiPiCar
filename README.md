@@ -556,19 +556,96 @@ Once model training was complete, we were able to test the live camera feed agai
 
 <img src="Pictures/model_detection.png" width="70%">
 
-### Stop Sign Adjustments
+With our object detection working well, the next step was to alter the aiPiCar's behavior when certain objects were recognized.
 
 ### Person Avoidance
 
-### 25 mph Adjustments
+The code for person avoidance was the easiest to implement. When the model recognizes a lego "person", it sets car speed to zero until the person is no longer recognized, ie removed from the camera frame.
 
-### 40 mph Adjustments
+```python
+class Pedestrian(TrafficObject):
+    def set_car_state(self, car_state):
+        logging.debug('pedestrian: stopping car')
+        car_state['speed'] = 0
+```
 
+The behvaior when the aiPiCar recognizes a person is demonstrated in the video below.
 
-https://www.dlology.com/blog/how-to-train-an-object-detection-model-easy-for-free/
+[![Video of the aiPiCar person recognition](Pictures/3persondetect.png)](https://youtu.be/EZWdnMRZrPU)
 
-## Lane Detection and Self Driving Part Two
+### Stop Sign Adjustments
 
-## Lessons Learned and Opportunities for Future Teams
+The code for stop sign behavior was the msot complicated to implement, as there needed to be a state set on initial recognition of the stop sign, which then triggers a wait counter for 3 seconds, before allowing the aiPiCar to proceed. The state implmentation is necessary because the detected stop sign remains in the video frame, which would cause the model to continually recognize the stop sign and kick off 3 second wait counters, rather than just initially. 
+
+```python
+class StopSign(TrafficObject):
+
+    def __init__(self, wait_time_in_sec=3, min_no_stop_sign=20):
+        self.in_wait_mode = False
+        self.has_stopped = False
+        self.wait_time_in_sec = wait_time_in_sec
+        self.min_no_stop_sign = min_no_stop_sign
+        self.no_stop_count = min_no_stop_sign
+        self.timer = None
+
+    def set_car_state(self, car_state):
+        self.no_stop_count = self.min_no_stop_sign
+
+        if self.in_wait_mode:
+            logging.debug('stop sign: 2) still waiting')
+            # wait for 2 second before proceeding
+            car_state['speed'] = 0
+            return
+
+        if not self.has_stopped:
+            logging.debug('stop sign: 1) just detected')
+
+            car_state['speed'] = 0
+            self.in_wait_mode = True
+            self.has_stopped = True
+            self.timer = Timer(self.wait_time_in_sec, self.wait_done)
+            self.timer.start()
+            return
+
+    def wait_done(self):
+        logging.debug('stop sign: 3) finished waiting for %d seconds' % self.wait_time_in_sec)
+        self.in_wait_mode = False
+```
+
+The behvaior when the aiPiCar recognizes a stop sign is demonstrated in the video below.
+
+[![Video of the aiPiCar stop sign recognition](Pictures/4stopdetect.png)](https://youtu.be/SC_2OM8m3Fw)
+
+### 25 mph and 40 mph Adjustments
+
+Similar to the behavior of person detection, Speed limit adjustments were relatively easy to implement due to the set_speed function of the actual SunFounder Pi Car controles, ranging 0-100 in 10 value increments. 
+
+```python
+class SpeedLimit(TrafficObject):
+
+    def __init__(self, speed_limit):
+        self.speed_limit = speed_limit
+
+    def set_car_state(self, car_state):
+        logging.debug('speed limit: set limit to %d' % self.speed_limit)
+        car_state['speed_limit'] = self.speed_limit
+```
+
+The behvaior when the aiPiCar recognizes a stop sign is demonstrated in the video below.
+
+[![Video of the aiPiCar speed limit recognition](Pictures/5limitdetect.png)](https://youtu.be/OwfQ79Ki54M)
+
+### Practical Demonstration
+
+Finally, to demonstrate all of this awesome behavior in one go, a demo was set up to emulate our aiPiCar driving through a "School Zone". In the example, the aiPiCar starts driving, while following lanes, at an initial speed of 40 mph. aiPiCar then enters the school zone and recognizes that speed limit has been reduced to 25 mph, and continues lane following. aiPiCar waits for a person who has stopped in the middle of the street, and continues through the school zone at 25 mph, until it reaches a stop sign and waits for 3 seconds before proceeding at 25mph. Finally, the aiPiCar recognizes the 40 mph sign indicating the end of the school zone, and sets its speed back to 40 mph. BUT WAIT! A Student has jumped into the road outside the school zone! That is ok for aiPiCar, as it brings itself to a stop, and waits for the student to clear the road.
+
+The aiPiCar school zone behavior demonstration video is below.
+
+[![Video of the aiPiCar school zone](Pictures/6schoolzone.png)](https://youtu.be/zq48dmnHe-U)
+
+## Lessons Learned, Opportunities for Future Teams, and Additional Research Topics
 
 Paragraph about lessons learned, opportunities for future teams
+Teach itself lane driving (end-to-end) not above
+Teach itself what to do with objects (end-to-end) not rules based
+speed limits only trained, not all
