@@ -485,13 +485,13 @@ For this project, the recommended existing model to train was the MobileNet v2 S
 
 The first step of the process is to take a number of training images used to train the model. These images show the objects you want the aiPiCar to recognize, at various angles and lighting in the environment the car will operate in. For this project, we took 50 images randomly placing the objects in different combinations and angles, similar to below:
 
-#image of training images
+<img src="Object%20Training%20Images/IMG_3783.jpeg" width="70%">
 
 One the images were captured, the next step was to bound and label the images they contain. By taking these raw images and outlining/ labeling the individual objects they contain, these files can be used during the Machine Training process for these objects. 
 
 To accomplish labeling the 50 images, we used an app called [RectLabel](https://rectlabel.com/) This macOS app allows you to predefine the objects you want to label, then quickly cycle through the 50 images while drawing label boxes around the objects in each image. Overall, the process for 50 images took about 60 minutes, with the app exporting an xml file for each image. 
 
-#image of labelled training images
+<img src="Pictures/labeling.png" width="70%">
 
 Now that we had the 50 training images, as well as xml files with the labelling data, we were able to actually train our model. To do so, we leveraged this [Google Collab Notebook](https://colab.research.google.com/github/dctian/DeepPiCar/blob/master/models/object_detection/code/tensorflow_traffic_sign_detection.ipynb) setup to connect to images in a github rebo and run the training commands. The specific instructions are well documented in the notebook, but the high level steps involve:
 * Authenticating to google drive to store output data
@@ -505,7 +505,7 @@ Once model training was complete, we were able to test the live camera feed agai
 
 # Code Chunk for display objects with model
 
-# image of trained model test
+<img src="Pictures/model_detection.png" width="70%">
 
 ### Stop Sign Adjustments
 
