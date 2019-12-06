@@ -229,7 +229,7 @@ Step Two: Connect to localhost from web browser
 
 Video of the aiPiCar operating via remote control:
 
-[![Video of the aiPiCar operating via remote control](https://assets.change.org/photos/7/qo/yu/WPqOyUupuKfUyEM-800x450-noPad.jpg?1523045557)](https://www.youtube.com/watch?v=Bf4ltXj-Qyw)
+[![Video of the aiPiCar operating via remote control](Pictures/1remotecontrol.png)](https://www.youtube.com/watch?v=Bf4ltXj-Qyw)
 
 ## Lane Detection and Self Driving Part One: OpenCV
 
@@ -465,7 +465,7 @@ def stabilize_steering_angle(
 
 Video of the aiPiCar autonomously navigating lane lines:
 
-[![Video of the aiPiCar autonomously navigating lane lines](https://assets.change.org/photos/7/qo/yu/WPqOyUupuKfUyEM-800x450-noPad.jpg?1523045557)](https://youtu.be/dGva-cCV_7U)
+[![Video of the aiPiCar autonomously navigating lane lines](Pictures/2lanedetection.png)](https://youtu.be/dGva-cCV_7U)
 
 ## Sign Recognition and Obstacle Avoidance
 
