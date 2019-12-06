@@ -481,6 +481,10 @@ In order to train the object recognition model, we used a method called "Transfe
 
 > "We don’t want to collect and label hundreds of thousands of images and spend weeks or months to construct and train a deep detection model from scratch. What we can do is to leverage Transfer Learning — which starts with the model parameters of a pre-trained model, supply it with only 50–100 of our own images and labels, and only spend a few hours to train parts of the detection neural network. The intuition is that in a pre-trained model, the base CNN layers are already good at extracting features from images since these models are trained on a vast number and large variety of images. The distinction is that we now have a different set of object types (6) than that of the pre-trained models (~100–100,000 types)."
 
+Note: the following articles were extremely helpful to the training process:
+* [DLology Training Object Detection Models](https://www.dlology.com/blog/how-to-train-an-object-detection-model-easy-for-free/)
+* [DeepPiCar — Part 6: Traffic Sign and Pedestrian Detection and Handling](https://towardsdatascience.com/deeppicar-part-6-963334b2abe0)
+
 For this project, the recommended existing model to train was the MobileNet v2 SSD COCO Quantized Model. We specifically need the quantized version of the mdoel, because the Google EdgeTPU is specifically designed to work with quantized models. 
 
 The first step of the process is to take a number of training images used to train the model. These images show the objects you want the aiPiCar to recognize, at various angles and lighting in the environment the car will operate in. For this project, we took 50 images randomly placing the objects in different combinations and angles, similar to below:
@@ -493,15 +497,62 @@ To accomplish labeling the 50 images, we used an app called [RectLabel](https://
 
 <img src="Pictures/labeling.png" width="70%">
 
-Now that we had the 50 training images, as well as xml files with the labelling data, we were able to actually train our model. To do so, we leveraged this [Google Collab Notebook](https://colab.research.google.com/github/dctian/DeepPiCar/blob/master/models/object_detection/code/tensorflow_traffic_sign_detection.ipynb) setup to connect to images in a github rebo and run the training commands. The specific instructions are well documented in the notebook, but the high level steps involve:
-* Authenticating to google drive to store output data
-* Connecting to the repo where the images and xml files are stored
-* Downloading the MobileNet v2 SSD COCO Quantized Model
-* Converting the xml label files to a csv training file
-* Run Training Model
-* Convert Output to Edge TPU's tflite Format
+Now that we had the 50 training images, as well as xml files with the labelling data, we were able to actually train our model. The first step to doing so is to convert the xml files into a .tfrecord file. The following code can be used within a google collab notebook to accomplish this:
 
-Once model training was complete, we were able to test the live camera feed against the same objects in real time:
+```
+# Convert xml files to a single csv file,
+python xml_to_csv.py -i aiPiCar/ObjectTrainingImages/train -o aiPiCar/ObjectTrainingImages/train/train_labels.csv
+
+# Convert test folder annotation xml files to a single csv.
+python xml_to_csv.py -i aiPiCar/ObjectTrainingImages/test -oaiPiCar/ObjectTrainingImages/test_labels.csv
+
+# Generate `train.record`
+python generate_tfrecord.py --csv_input=aiPiCar/ObjectTrainingImages/train/train_labels.csv --output_path=aiPiCar/ObjectTrainingImages/train/train.record --img_path=data/images/train --label_map aiPiCar/ObjectTrainingImages/train/label_map.pbtxt
+
+# Generate `test.record`
+python generate_tfrecord.py --csv_input=aiPiCar/ObjectTrainingImages/test/test_labels.csv --output_path=aiPiCar/ObjectTrainingImages/test/test.record --img_path=data/images/test --label_map aiPiCar/ObjectTrainingImages/test/label_map.pbtxt
+
+```
+
+After the .tfrecord files are generated, we were able to actually train the model. The Following Parameters were used in conjuction with the MobileNet v2 SSD COCO Quantized Model:
+* the pre-trained model: MobileNet v2 SSD COCO Quantized Model
+* two tfrecord files: test.tfrecord and train.tfrecord generated above
+* label_map.pbtxt file: generated above
+* training batch size (steps): 2000 
+* number of evaluation steps: 50
+* number of classes of unique objects: 4
+
+Finally, after the training output file was generated, we needed to convert the output to a TensorFlow Lite flatbuffer file compiled for the Edge TPU. The directions can be found on the Google Documentation [here](https://coral.ai/docs/edgetpu/retrain-detection/).
+
+> 1. To freeze the graph and convert it to TensorFlow Lite, use the following script and specify the checkpoint number you want to use:
+
+```
+# From the Docker /tensorflow/models/research directory
+./convert_checkpoint_to_edgetpu_tflite.sh --checkpoint_num 500
+```
+
+> Your converted TensorFlow Lite model is named output_tflite_graph.tflite and is output in the Docker container at tensorflow/models/research/learn_pet/models/, which is the mounted directory available on your host filesystem at $DETECT_DIR ($HOME/edgetpu/detection/models/)
+
+> 2. Now open a new terminal and compile the model using the Edge TPU Compiler:
+
+```
+# Install the compiler:
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+
+sudo apt update
+
+sudo apt install edgetpu
+
+# Change directories to where the new model is:
+cd $HOME/edgetpu/detection/models
+
+# Compile the model:
+edgetpu_compiler output_tflite_graph.tflite
+```
+
+Once model training was complete, we were able to test the live camera feed against the same objects in real time using our ```objects_quantized_edgetpu.tflite``` file:
 
 <img src="Pictures/model_detection.png" width="70%">
 
