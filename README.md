@@ -7,7 +7,7 @@
 
 ## Project Introduction and Overview
 
-Pick up any news source today, and you’ll likely see something about autopilot technology. Whether it’s lane assistance on production cars, self driving fully autonomous vehicles on the streets of LA, delivery drones autopiloting themselves to delivery drops, or worse, a recent accident caused by testing of these emerging technologies, we can be certain that the industry is rapidly advancing towards adoption of autopilot technology. 
+Pick up any news source today, and you’ll likely see something about autopilot technology. Whether it’s lane assistance on production cars, self-driving fully autonomous vehicles on the streets of LA, delivery drones autopiloting themselves to delivery drops, or worse, a recent accident caused by testing of these emerging technologies, we can be certain that the industry is rapidly advancing towards adoption of autopilot technology. 
 
 Although major corporations like Tesla and Amazon are pouring billions of dollars into this technology, the practical applications can be learned and demonstrated on a much smaller scale. The goal of this project is to demonstrate these technological concepts using a small Robotic Car powered by a Raspberry Pi, at a price tag under $400. 
 
@@ -15,7 +15,7 @@ Although major corporations like Tesla and Amazon are pouring billions of dollar
 * Assemble the PiCar Kit and Base Raspberry Pi Operating System 
 * Demonstrate Autonomous “Lane Following” through OpenCV
 * Demonstrate Advanced Camera recognition features, including adapting to street signs and basic obstacle avoidance
-* Put everything together, demonstrating a real world application scenario invloving both lane following and object recognition
+* Put everything together, demonstrating a real world application scenario involving both lane following and object recognition
 
 #### The build was inspired and heavily influenced by the following web pages:
 * [Building a Raspberry Pi Car Robot with WiFi and Video](https://www.hanselman.com/blog/BuildingARaspberryPiCarRobotWithWiFiAndVideo.aspx)
@@ -36,7 +36,7 @@ Although major corporations like Tesla and Amazon are pouring billions of dollar
 * Raspberry Pi OS: [Rasbpian Buster v. Sept 2019](https://www.raspberrypi.org/downloads/raspbian/)
 * Remote File Server: Samba File Server 
 ``` ~sudo apt-get install samba samba-common-bin -y ```
-* Camera Driver Utlity: v4l2 Linux 
+* Camera Driver Utility: v4l2 Linux 
 ``` ~sudo apt-get install v4l-utils ```
 * Remote Car Control: SunFounder PiCar ``` ~git clone https://github.com/dctian/SunFounder_PiCar.git ```
 * Python v3.7.3
@@ -58,7 +58,7 @@ Although major corporations like Tesla and Amazon are pouring billions of dollar
 
 ## Building the aiPiCar
 
-Bulding the aiPiCar was relatively easy. For the most part, I was able to follow the instructions from the manufacturer, with a few key diviations outlines below.
+Building the aiPiCar was relatively easy. For the most part, I was able to follow the instructions from the manufacturer, with a few key deviations outlines below.
 
 [Manufacturer Build Instructions](https://www.sunfounder.com/learn/download/X1BWQ19SYXNwYmVycnlfUGlfU21hcnRfVmlkZW9fQ2FyX1YyLjAucGRm/dispi)
 
@@ -68,9 +68,9 @@ Bulding the aiPiCar was relatively easy. For the most part, I was able to follow
 
 ### Installing Heatsinks
 
-**(Before Page 16, PCB Assembly)** - Install heatsinks on Respberry Pi Board
+**(Before Page 16, PCB Assembly)** - Install heatsinks on Raspberry Pi Board
 
-Before Installing the HATS on the Pi board during install, I needed to install the heatsinks directly to the Raspberry Pi board. To do so, all that was required was to remove the backing strip on the heatsink to expose the adhesive paste, and to push the ehatsinks onto the CPU and network card as shown below:
+Before Installing the HATS on the Pi board during install, I needed to install the heatsinks directly to the Raspberry Pi board. To do so, all that was required was to remove the backing strip on the heatsink to expose the adhesive paste, and to push the heatsinks onto the CPU and network card as shown below:
 
 <img src="Pictures/heatsinks.jpg" width="50%">
 
@@ -143,7 +143,7 @@ In order to be able to easily read/ write files from the Pi without needed to co
 
 ### SunFounder PiCar-V Software Setup
 
-Unfortunately, the Manufacturer's server code runs on Python 2, while we are running the project on Python 3. Thankfully, the author of one of the tutorials I am following (David Tian, linked above) has updated the repo to be Python 3 compatible. Commands to install his version of the Servewr API are found below:
+Unfortunately, the Manufacturer's server code runs on Python 2, while we are running the project on Python 3. Thankfully, the author of one of the tutorials I am following (David Tian, linked above) has updated the repo to be Python 3 compatible. Commands to install his version of the Server API are found below:
 
 ```
 alias python=python3
@@ -160,7 +160,7 @@ pi@raspberrypi:~ $ cd SunFounder_PiCar-V
 pi@raspberrypi:~/SunFounder_PiCar-V $ sudo ./install_dependencies
 ```
 
-### Installing Python and Dependant Packages
+### Installing Python and Dependent Packages
 
 Once the OS was up and running, we need to install the other packages we will be utilizing:
 * Install Open CV: 
@@ -185,11 +185,11 @@ Once the OS was up and running, we need to install the other packages we will be
 
 ### Installing Google edgeTPU
 
-Similar to the above mentioned problem with python3 and OpenCV compatibility, there were some issues intially with compatibility between Google's edgeTPU and Rasbpian Buster. The original install instructions for the edgeTPU can be found below.
+Similar to the above mentioned problem with python3 and OpenCV compatibility, there were some issues initially with compatibility between Google's edgeTPU and Rasbpian Buster. The original install instructions for the edgeTPU can be found below.
 
 [Google EdgeTPU Install Instructions](https://coral.withgoogle.com/docs/accelerator/get-started/)
 
-Again, fortunately, I was able to find a github repo with workaround instructions for Raspian and EdgeTPU compatibility. Instructructions followed below, under "Getting the Coral to work with the Pi 4":
+Again, fortunately, I was able to find a github repo with workaround instructions for Raspian and EdgeTPU compatibility. Instructions followed below, under "Getting the Coral to work with the Pi 4":
 
 [leswright1977/RPi4-Google-Coral](https://github.com/leswright1977/RPi4-Google-Coral)
 
@@ -233,7 +233,7 @@ Video of the aiPiCar operating via remote control:
 
 ## Lane Detection and Self Driving Part One: OpenCV
 
-The first challenge was to process live fottage through the aiPiCar's camera and process it through multiple OpenCV filters in order to render detectable lane lines, and ultimately navigate the lane line autonomously. To accomplish this, I first took the camera footage stream from the car, and then applied the filters as outlined below.
+The first challenge was to process live footage through the aiPiCar's camera and process it through multiple OpenCV filters in order to render detectable lane lines, and ultimately navigate the lane line autonomously. To accomplish this, I first took the camera footage stream from the car, and then applied the filters as outlined below.
 
 ###### Note: Source code can be found in github repo, under open_cvtest.py
 
@@ -392,7 +392,7 @@ lane_lines = []
 
 ### Adding Motion through PiCar and DeepPiCar Tutorial
 
-Once the video was processing and filtering correctly, allowing for the car to self correct motion proved a bit mroe challenging. As I am relatively new to python programming, I heavily leaned on the DeepPiCar tutorial referenced above, while modifying the source code to work with my image filtering.
+Once the video was processing and filtering correctly, allowing for the car to self correct motion proved a bit more challenging. As I am relatively new to python programming, I heavily leaned on the DeepPiCar tutorial referenced above, while modifying the source code to work with my image filtering.
 
 Code Used:
 ```python
@@ -469,7 +469,7 @@ Video of the aiPiCar autonomously navigating lane lines:
 
 ## Sign Recognition and Obstacle Avoidance
 
-After the aiPiCar was succesfully able to navigate the lane lines and follow the blue tape course, the next step was to build and train an object recognition model in order to autonomously alter the car's behavior when recognizing various objects, signs and people. The objects we wanted to train and account for were:
+After the aiPiCar was successfully able to navigate the lane lines and follow the blue tape course, the next step was to build and train an object recognition model in order to autonomously alter the car's behavior when recognizing various objects, signs and people. The objects we wanted to train and account for were:
 * Stop Sign: When the aiPiCar recognizes a stop sign, the car should come to a stop, wait, and then continue driving
 * Person: When the aiPiCar recognizes a (lego) person, the car should come to a stop and wait until the person is no longer in the path of the car
 * 25 mph Sign: When the aiPiCar recognizes a 25 mph sign, the car should slow speed until given a new speed limit
@@ -477,7 +477,7 @@ After the aiPiCar was succesfully able to navigate the lane lines and follow the
 
 ### Model Training
 
-In order to train the object recognition model, we used a method called "Transfer Learning" that allows you to leverage an existing model, rather than building a new model from scratch. Once you select a model to work from, you can feed it defined images and train the model to recognize the specifc objects you are working with. The reasoning is well-stated by David Tian's tutorial article:
+In order to train the object recognition model, we used a method called "Transfer Learning" that allows you to leverage an existing model, rather than building a new model from scratch. Once you select a model to work from, you can feed it defined images and train the model to recognize the specific objects you are working with. The reasoning is well-stated by David Tian's tutorial article:
 
 > "We don’t want to collect and label hundreds of thousands of images and spend weeks or months to construct and train a deep detection model from scratch. What we can do is to leverage Transfer Learning — which starts with the model parameters of a pre-trained model, supply it with only 50–100 of our own images and labels, and only spend a few hours to train parts of the detection neural network. The intuition is that in a pre-trained model, the base CNN layers are already good at extracting features from images since these models are trained on a vast number and large variety of images. The distinction is that we now have a different set of object types (6) than that of the pre-trained models (~100–100,000 types)."
 
@@ -485,7 +485,7 @@ Note: the following articles were extremely helpful to the training process:
 * [DLology Training Object Detection Models](https://www.dlology.com/blog/how-to-train-an-object-detection-model-easy-for-free/)
 * [DeepPiCar — Part 6: Traffic Sign and Pedestrian Detection and Handling](https://towardsdatascience.com/deeppicar-part-6-963334b2abe0)
 
-For this project, the recommended existing model to train was the MobileNet v2 SSD COCO Quantized Model. We specifically need the quantized version of the mdoel, because the Google EdgeTPU is specifically designed to work with quantized models. 
+For this project, the recommended existing model to train was the MobileNet v2 SSD COCO Quantized Model. We specifically need the quantized version of the model, because the Google EdgeTPU is specifically designed to work with quantized models. 
 
 The first step of the process is to take a number of training images used to train the model. These images show the objects you want the aiPiCar to recognize, at various angles and lighting in the environment the car will operate in. For this project, we took 50 images randomly placing the objects in different combinations and angles, similar to below:
 
@@ -514,7 +514,7 @@ python generate_tfrecord.py --csv_input=aiPiCar/ObjectTrainingImages/test/test_l
 
 ```
 
-After the .tfrecord files are generated, we were able to actually train the model. The Following Parameters were used in conjuction with the MobileNet v2 SSD COCO Quantized Model:
+After the .tfrecord files are generated, we were able to actually train the model. The Following Parameters were used in conjunction with the MobileNet v2 SSD COCO Quantized Model:
 * the pre-trained model: MobileNet v2 SSD COCO Quantized Model
 * two tfrecord files: test.tfrecord and train.tfrecord generated above
 * label_map.pbtxt file: generated above
@@ -569,13 +569,13 @@ class Pedestrian(TrafficObject):
         car_state['speed'] = 0
 ```
 
-The behvaior when the aiPiCar recognizes a person is demonstrated in the video below.
+The behavior when the aiPiCar recognizes a person is demonstrated in the video below.
 
 [![Video of the aiPiCar person recognition](Pictures/3persondetect.png)](https://youtu.be/EZWdnMRZrPU)
 
 ### Stop Sign Adjustments
 
-The code for stop sign behavior was the msot complicated to implement, as there needed to be a state set on initial recognition of the stop sign, which then triggers a wait counter for 3 seconds, before allowing the aiPiCar to proceed. The state implmentation is necessary because the detected stop sign remains in the video frame, which would cause the model to continually recognize the stop sign and kick off 3 second wait counters, rather than just initially. 
+The code for stop sign behavior was the most complicated to implement, as there needed to be a state set on initial recognition of the stop sign, which then triggers a wait counter for 3 seconds, before allowing the aiPiCar to proceed. The state implementation is necessary because the detected stop sign remains in the video frame, which would cause the model to continually recognize the stop sign and kick off 3 second wait counters, rather than just initially. 
 
 ```python
 class StopSign(TrafficObject):
@@ -612,13 +612,13 @@ class StopSign(TrafficObject):
         self.in_wait_mode = False
 ```
 
-The behvaior when the aiPiCar recognizes a stop sign is demonstrated in the video below.
+The behavior when the aiPiCar recognizes a stop sign is demonstrated in the video below.
 
 [![Video of the aiPiCar stop sign recognition](Pictures/4stopdetect.png)](https://youtu.be/SC_2OM8m3Fw)
 
 ### 25 mph and 40 mph Adjustments
 
-Similar to the behavior of person detection, Speed limit adjustments were relatively easy to implement due to the set_speed function of the actual SunFounder Pi Car controles, ranging 0-100 in 10 value increments. 
+Similar to the behavior of person detection, Speed limit adjustments were relatively easy to implement due to the set_speed function of the actual SunFounder Pi Car controls, ranging 0-100 in 10 value increments. 
 
 ```python
 class SpeedLimit(TrafficObject):
@@ -631,7 +631,7 @@ class SpeedLimit(TrafficObject):
         car_state['speed_limit'] = self.speed_limit
 ```
 
-The behvaior when the aiPiCar recognizes a stop sign is demonstrated in the video below.
+The behavior when the aiPiCar recognizes a stop sign is demonstrated in the video below.
 
 [![Video of the aiPiCar speed limit recognition](Pictures/5limitdetect.png)](https://youtu.be/OwfQ79Ki54M)
 
@@ -651,19 +651,19 @@ That being said, there is still a ton of potential to continue the aiPiCar proje
 
 ### Advanced Lane Following using Machine Learning
 
-Although the lane following build worked well for the demonstration purposes of the aiPiCar, because the code was OpenCV/ python based, it was extremely sensitive to the input calibration settings. For instance, specific color ranges needed to be input for the blues of the lane line masking and canny detection, which created problems testing the aiPiCar in different lighting situations (day/night). When the code couldn't recognize the lane lines, it created problems for the aiPiCar- which would cause serious problems in real world applicaitons. 
+Although the lane following build worked well for the demonstration purposes of the aiPiCar, because the code was OpenCV/ python based, it was extremely sensitive to the input calibration settings. For instance, specific color ranges needed to be input for the blues of the lane line masking and canny detection, which created problems testing the aiPiCar in different lighting situations (day/night). When the code couldn't recognize the lane lines, it created problems for the aiPiCar- which would cause serious problems in real world applications. 
 
-One potential solution would be a more comprehensive approach to the lane following build, using actual machine learning. Similar to the object recognition build above, this would require training a recognition model for the lane lines, which then calibrated sterring angles based on machine-recognized lane lines, and allowing for altered behaviors based on percent certainty of the recognition. 
+One potential solution would be a more comprehensive approach to the lane following build, using actual machine learning. Similar to the object recognition build above, this would require training a recognition model for the lane lines, which then calibrated steering angles based on machine-recognized lane lines, and allowing for altered behaviors based on percent certainty of the recognition. 
 
-To accomplish this, a team could record many videos of the aiPiCar running through the track (either via remote control or using the OpenCV lane following method), and feed image files generated from the videos into a model for training. If the videos were done under different lighting conditions, camera angles, etc, the aiPiCar would be much better able to account for these varainces while running through the lane track.
+To accomplish this, a team could record many videos of the aiPiCar running through the track (either via remote control or using the OpenCV lane following method), and feed image files generated from the videos into a model for training. If the videos were done under different lighting conditions, camera angles, etc, the aiPiCar would be much better able to account for these variances while running through the lane track.
 
 ### Advanced Object Detection using End-to-End Machine Learning Approach
 
-In this project, a rules based approached for object detection was used in conjunction with the trained object model. That is, we had to physically tell the aiPiCar what to when an object was recognized- for instance, when you see a stop sign, wait three seconds, then proceed". With an end-to-end machine learning approach, the car would be trained from hundreds of hours of footage of "good drivers", and desern the correct behavior to follow when recognizing a stop sign. 
+In this project, a rules based approached for object detection was used in conjunction with the trained object model. That is, we had to physically tell the aiPiCar what to when an object was recognized- for instance, when you see a stop sign, wait three seconds, then proceed". With an end-to-end machine learning approach, the car would be trained from hundreds of hours of footage of "good drivers", and discern the correct behavior to follow when recognizing a stop sign. 
 
 [This NVIDEA paper](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) outlines the process of end-to-end learning as it applies to self-driving cars. As stated in the article:
 
 > With minimum training data from humans the system learns to drive in traffic on local roads with or without lane markings and on
 highways. It also operates in areas with unclear visual guidance such as in parking lots and on unpaved roads.
 
-This is a clear step forward from the lane navigation and object recognition done in this aiPiCar project. Implementation of a similar method to the NVIDEA team with an Sunfounder Pi Car would be a great opportunity for future teams working on a similar project. 
+This is a clear step forward from the lane navigation and object recognition done in this aiPiCar project. Implementation of a similar method to the NVIDEA team with a Sunfounder Pi Car would be a great opportunity for future teams working on a similar project. 
