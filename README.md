@@ -15,7 +15,7 @@ Although major corporations like Tesla and Amazon are pouring billions of dollar
 * Assemble the PiCar Kit and Base Raspberry Pi Operating System 
 * Demonstrate Autonomous “Lane Following” through OpenCV
 * Demonstrate Advanced Camera recognition features, including adapting to street signs and basic obstacle avoidance
-* Demonstrate Advanced Autonomous “Lane Following” using Deep Learning and TensorFlow
+* Put everything together, demonstrating a real world application scenario invloving both lane following and object recognition
 
 #### The build was inspired and heavily influenced by the following web pages:
 * [Building a Raspberry Pi Car Robot with WiFi and Video](https://www.hanselman.com/blog/BuildingARaspberryPiCarRobotWithWiFiAndVideo.aspx)
@@ -645,7 +645,25 @@ The aiPiCar school zone behavior demonstration video is below.
 
 ## Lessons Learned, Opportunities for Future Teams, and Additional Research Topics
 
-Paragraph about lessons learned, opportunities for future teams
-Teach itself lane driving (end-to-end) not above
-Teach itself what to do with objects (end-to-end) not rules based
-speed limits only trained, not all
+Overall, this project allowed me to learn a ton about hardware configurations for the Raspberry Pi and macOS, an avenue with a lot of potential future projects to explore. I also learned quite a bit of python, while also learning about the Google EdgeTPU- which will be extremely useful for future machine learning projects.
+
+That being said, there is still a ton of potential to continue the aiPiCar project for myself or future teams. A few ideas have been notated below:
+
+### Advanced Lane Following using Machine Learning
+
+Although the lane following build worked well for the demonstration purposes of the aiPiCar, because the code was OpenCV/ python based, it was extremely sensitive to the input calibration settings. For instance, specific color ranges needed to be input for the blues of the lane line masking and canny detection, which created problems testing the aiPiCar in different lighting situations (day/night). When the code couldn't recognize the lane lines, it created problems for the aiPiCar- which would cause serious problems in real world applicaitons. 
+
+One potential solution would be a more comprehensive approach to the lane following build, using actual machine learning. Similar to the object recognition build above, this would require training a recognition model for the lane lines, which then calibrated sterring angles based on machine-recognized lane lines, and allowing for altered behaviors based on percent certainty of the recognition. 
+
+To accomplish this, a team could record many videos of the aiPiCar running through the track (either via remote control or using the OpenCV lane following method), and feed image files generated from the videos into a model for training. If the videos were done under different lighting conditions, camera angles, etc, the aiPiCar would be much better able to account for these varainces while running through the lane track.
+
+### Advanced Object Detection using End-to-End Machine Learning Approach
+
+In this project, a rules based approached for object detection was used in conjunction with the trained object model. That is, we had to physically tell the aiPiCar what to when an object was recognized- for instance, when you see a stop sign, wait three seconds, then proceed". With an end-to-end machine learning approach, the car would be trained from hundreds of hours of footage of "good drivers", and desern the correct behavior to follow when recognizing a stop sign. 
+
+[This NVIDEA paper](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) outlines the process of end-to-end learning as it applies to self-driving cars. As stated in the article:
+
+> With minimum training data from humans the system learns to drive in traffic on local roads with or without lane markings and on
+highways. It also operates in areas with unclear visual guidance such as in parking lots and on unpaved roads.
+
+This is a clear step forward from the lane navigation and object recognition done in this aiPiCar project. Implementation of a similar method to the NVIDEA team with an Sunfounder Pi Car would be a great opportunity for future teams working on a similar project. 
